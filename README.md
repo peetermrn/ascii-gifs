@@ -5,11 +5,16 @@ Just for fun:). Animate gif as ascii art. GIFs in test_gifs are for testing.
 Works in linux terminal and windows cmd but
 not on windows git bash (ANSI escape sequence isn't
 supported [from what i understood](https://github.com/microsoft/terminal/issues/6634) meaning clearing the terminal
-between frames breaks)
-
+between frames breaks).
+Also
+---
+### How it works
+Loop through frames of GIF, convert each frame to greyscale meaning each pixel has a value between 0 and 1 depending on 
+the pixel's brightness. Next map each pixel value to an ascii character based on their brightness. Then just print out 
+resulting string and "voilà!" we have an ascii picture. Use ANSI escape codes to clear terminal between frames and format 
+picture size depending on terminal size to fit image properly.
 
 ---
-
 ### Getting started (no install script yet)
 
 1. clone `git clone https://github.com/peetermrn/ascii-gifs`
