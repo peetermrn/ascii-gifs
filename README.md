@@ -6,7 +6,7 @@ Works in linux terminal and windows cmd but
 not on windows git bash (ANSI escape sequence isn't
 supported [from what i understood](https://github.com/microsoft/terminal/issues/6634) meaning clearing the terminal
 between frames breaks).
-Also
+
 ---
 ### How it works
 Loop through frames of GIF, convert each frame to greyscale meaning each pixel has a value between 0 and 1 depending on 
