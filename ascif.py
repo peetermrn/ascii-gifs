@@ -79,13 +79,13 @@ def round_to_specific(x, more_detailed=False, reverse=False):
     return round(1 - base * round(x / base), 2) if reverse else round(base * round(x / base), 2)
 
 
-def gif_to_ascii(file_path, reverse_colors=False, loop=False, t=0.01, more_detailed=False):
+def gif_to_ascii(file_path, reverse_colors=False, loop=False, time_multiplier=1, more_detailed=False):
     """
     Main logic function. Takes in path to gif and prints out gif in ascii format.
     :param file_path: path to GIF file.
     :param reverse_colors: reverses colors, black turns white and white turns black etc.
     :param loop: if True keeps ascii GIF looping.
-    :param t: determines time between frames.
+    :param time_multiplier: determines time between frames.
     :param more_detailed: if True sets number of colors in color ballet to 21 instead od default 11.
     """
     # Open the GIF file
@@ -102,7 +102,7 @@ def gif_to_ascii(file_path, reverse_colors=False, loop=False, t=0.01, more_detai
             # Add additional text
             extra_text = format_additional_text(
                 (f"\n{' File':<20}: {file_path}\n{' Reverse Colors':<20}: {reverse_colors}\n"
-                 f"{' Loop':<20}: {loop}\n{' T parameter':<20}: {t}\n"
+                 f"{' Loop':<20}: {loop}\n{' Time Multiplier':<20}: {time_multiplier}\n"
                  f"{' More detailed':<20}: {more_detailed}\n"), window_size.columns)
 
             # Text makes animation smaller. The hard coded 3 is the following: one for the line under the animation,
@@ -129,7 +129,8 @@ def gif_to_ascii(file_path, reverse_colors=False, loop=False, t=0.01, more_detai
             # escape codes to clear terminal between frames.
             print(f"{res_str}\033[1m{window_size.columns * '='}\n\033[0m{extra_text}", end='\033[H\033[J')
 
-            time.sleep(t)
+            time.sleep(gif_image.info['duration']/1000/time_multiplier)
+
         # Break out of while loop if loop is set to False
         if not loop:
             break
@@ -148,13 +149,13 @@ def main():
     # Optional arguments
     parser.add_argument("--reverse_colors", action="store_true", help="Reverse the colors")
     parser.add_argument("--loop", action="store_true", help="Enable looping")
-    parser.add_argument("--t", type=float, default=0.01, help="Time parameter")
+    parser.add_argument("--time_multiplier", type=float, default=1, help="Time multiplier")
     parser.add_argument("--more_detailed", action="store_true", help="More detailed")
 
     # Parse the command-line arguments
     args = parser.parse_args()
 
-    gif_to_ascii(args.GIF_file, args.reverse_colors, args.loop, args.t, args.more_detailed)
+    gif_to_ascii(args.GIF_file, args.reverse_colors, args.loop, args.time_multiplier, args.more_detailed)
 
 
 if __name__ == "__main__":
