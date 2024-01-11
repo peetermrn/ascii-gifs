@@ -41,7 +41,7 @@ For windows:
 - `--loop` adding this keeps the GIF looping
 - `--time_multiplier=1.5` sets gif to run at 1.5x speed
 
-![example_1.gif](md_srcs%2Fexample_1.gif)
+![example_fish.gif](md_srcs%2Fexample_fish.gif)
 
 For linux:    
 `python3 ascif.py test_gifs/dance.gif --loop --time_multiplier=1.5 --more_detailed`    
@@ -53,8 +53,7 @@ For windows:
 - `--time_multiplier=2` sets gif speed to 2x
 - `--more_detailed` sets color ballet do have 21 different colors
 
-![example_2.gif](md_srcs%2Fexample_2.gif)
-
+![example_dance.gif](md_srcs%2Fexample_dance.gif)
 
 ---
 
